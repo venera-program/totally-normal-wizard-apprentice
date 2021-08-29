@@ -16,6 +16,12 @@ public class BasicInkExample : MonoBehaviour {
 	// Creates a new Story object with the compiled story which we can then play!
 	void StartStory () {
 		story = new Story (inkJSONAsset.text);
+		story.onError += (msg, type) => {
+			if( type == Ink.ErrorType.Warning )
+				Debug.LogWarning(msg);
+			else
+				Debug.LogError(msg);
+		};
         if(OnCreateStory != null) OnCreateStory(story);
 		RefreshView();
 	}
