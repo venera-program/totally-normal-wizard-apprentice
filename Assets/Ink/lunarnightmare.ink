@@ -40,7 +40,7 @@ The Master Wizard drags her jewel-ringed hand down across her face with a look s
 She flops down on the couch where she's been sitting in a surprisingly undignified way, rolls over, and stuffs a pillow over her head.
 
 You make it about five minutes into listening to her snore before you stand up from your nest of pillows on the floor and resolve to find a way to make it out of the parlor yourself.
-//choice like '*[examine the parlor]' or some shit
+//choice like '*[examine the parlor]'
 ->->
 
 === hub ===
@@ -142,7 +142,7 @@ You think you doze for a few minutes, but you wake up with a crook in your neck 
 //go back to armchair gather
 ->->
 = samovar
-You decide to make yourself some tea. The samovar already has hot water; the Wizard told you a fire spirit lives in it and keeps it warm at all times, in case she wants a drink during late night research. The concentrate from the teapot on top of the water heater smells fragrant and spiced. You spill half of it over the table as you pour it into your cup, then spill more as you try to dump as much milk and sugar in as humanly possible.
+You decide to make yourself some tea. The samovar already has hot water; the Wizard told you a fire spirit lives in it and keeps it warm at all times, in case she wants a drink during late night research. The concentrate from the teapot on top of the water heater smells fragrant and spiced. You spill half of it over the table as you pour it into your cup, then spill more as you try to dump as much milk and sugar in as humanly possible. #has-tea
 
 Then you burn your tongue on it. Damn, it's hot! Stupid fire spirit. You have to put it down and drink it later.
 //go back to armchair gather
@@ -153,12 +153,13 @@ You pull the telescope around to fit your height and peer through. It takes exte
 ->->
 
 = telescope2
-The telescope lense comes into focus on a large amethyst parrot, stuck in a venus flytrap about your own height, struggling in futility. You watch with fascination for several minutes.
+The telescope lense comes into focus in the midst of the lush jungle outside, on a large amethyst parrot stuck in a venus flytrap about your own height, struggling in futility. You watch with fascination for several minutes before you get bored.
 //back to armchair gather
 ->->
 
 === room_desk ===
-the desk. take paperweight, open drawer with desk key and get kazoo, pour tea on books and get lunarium clue 1.
+The Wizard's hulking wooden desk is carved with lunar sigils and elaborate swirls; behind it is an equally oversized wooden chair. Its surface is littered with BOOKS; besides those, the only notable object is a huge and brilliant GEODE, cracked open and currently serving as a PAPERWEIGHT.
+//(not has-paperweight
 ->->
 = desk
 examine desk and find locked drawer.
@@ -167,8 +168,11 @@ examine desk and find locked drawer.
 = drawer
 open with desk key if you have it and get kazoo.
 ->->
-= books
-look at books. if you've made tea, pour tea on books and get lunarium clue 2.
+= books1
+look at books.
+->->
+= books2
+if you've made tea, pour tea on books and get lunarium clue 2.
 ->->
 = paperweight
 take paperweight.
