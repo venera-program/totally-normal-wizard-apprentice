@@ -1,13 +1,16 @@
 === function came_from(-> x) 
 	~ return TURNS_SINCE(x) == 0
 
+=== function has_item(item)
+    ~ return inventory ? item
+
+=== function seen_obj(object)
+    ~ return seen_objects ? object
+
 === choices_fireplace
-//(has-paperweight and not-grager) [*smash fishtank] (-> fishtank2)
-//(not-paperweight & not came from fishtank1) [+examine fishtank] (-> fishtank1)
-//(not-safekey1 and seen-footstool) [*drag over the footstool] (->tiger2)
-//(not-safekey and not-footstool and not came from tiger1) [+examine tiger head] (->tiger1)
-//[+look somewhere else] (-> hub)
-+ {inventory !? grager && inventory ? paperweight} [smash FISHTANK] # choice: room_fireplace.fishtank2
-+ {inventory !? grager && inventory !? paperweight && !came_from(-> room_fireplace.fishtank1)} [examine FISHTANK]
++ {!has_item(grager) && !has_item(paperweight) && !came_from(-> room_fireplace.fishtank1)} [examine FISHTANK] # move: room_fireplace.fishtank1
+* {!has_item(grager) && has_item(paperweight)} [smash FISHTANK] # move: room_fireplace.fishtank2
++ {!has_item(safekey1) && !seen_obj(footstool) && !came_from(-> room_fireplace.tiger1)} [examine TIGER HEAD] # move: room_fireplace.tiger1
+* {!has_item(safekey1) && seen_obj(footstool)} [drag over FOOTSTOOL] # move: room_fireplace.tiger2
 + [return to HUB] # move: hub
 - -> DONE

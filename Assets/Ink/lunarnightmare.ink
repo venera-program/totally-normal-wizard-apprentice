@@ -1,12 +1,13 @@
 INCLUDE logic.ink
 
-LIST inventory = paperweight, grager
+LIST inventory = paperweight, grager, safekey1
+LIST seen_objects = footstool
 
 === cws ===
 Hey there! TOTALLY NORMAL WIZARD APPRENTICE is an interactive fiction puzzle game written in the second person, and uses "you" to refer to the player character. 
 
 Additionally, the game contains two instances of comedic (non-graphic) animal death, caused directly by the protagonist. It's obviously not something the makers of this game condone, but if reading about animal harm is distressing or triggering for you, or likewise being identified as a character who does this, you should probably sit this out. Please, take care of yourself while you play. - Stephen
-->->
+-> DONE
 
 == intro ===
 
@@ -24,7 +25,7 @@ The Wizard takes a deep breath and answers you very slowly as if she were trying
 
 "Can I explore your tower?"
 //that needs to be a choice that moves to p2
-->->
+-> DONE
 
 = p2
 "Also no."
@@ -47,7 +48,7 @@ She flops down on the couch where she's been sitting in a surprisingly undignifi
 
 You make it about five minutes into listening to her snore before you stand up from your nest of pillows on the floor and resolve to find a way to make it out of the parlor yourself.
 //choice like '*[examine the parlor]'
-->->
+-> DONE
 
 === hub ===
 The Master Wizard's parlor is a long room paneled in dark wood and full of tchotchkes, tapestries, pinned butterflies, books, paintings, arcane contraptions, empty liquer bottles, and various ITEMS of almost every kind imaginable. You could probably amuse yourself here without leaving, but it's hot and stuffy and the violet fumes coming from the pipe in the ashtray are making you nauseous. 
@@ -69,22 +70,19 @@ What should you try [first/next]?
 
 //choices here: a) examine desk (if not been to rug, -> rug, if have seen rug, -> desk)
 //b) examine paintings (see a) c) examine armchair (see a) d) (conditional to seen-rug) examine safe e) examine lunarium f) (conditional to not (both have-grager AND have-safekey1)) examine fireplace g) bother the wizard
-->->
+-> DONE
 
 === room_couch ===
 the couch. talk to the wizard. she has clues for the paperweight, the paintings, the safe, the tea, the books, the parrots in the lunarium, and the telescope. u can also ask if your master is back yet (again).
-->->
+-> DONE
 
 === room_fireplace ===
 //not-grager, has-grager, not-safekey1, has-safekey1 all track item/inventory states
-#not-grager
-The Wizard's FIREPLACE probably did hold fires at some point. It has a mantle and casing carved of heavy pale marble in ornate swoops and swirls; a brass fire grate and poker stand off to one side half-forgotten. At some point in the last five hundred years, though, the Wizard has converted the hearth into a large FISHTANK for little candy-striped peppermint angelfish. You tap on the glass.
+{!has_item(grager)} The Wizard's FIREPLACE probably did hold fires at some point. It has a mantle and casing carved of heavy pale marble in ornate swoops and swirls; a brass fire grate and poker stand off to one side half-forgotten. At some point in the last five hundred years, though, the Wizard has converted the hearth into a large FISHTANK for little candy-striped peppermint angelfish. You tap on the glass.
 
-#has-grager
-The glass FISHTANK in the hearth is now a ruined husk of shattered glass and a sharp puddle on the floor, angelfish flopping around helplessly. You wonder briefly if you could eat one.
+{has_item(grager)} The glass FISHTANK in the hearth is now a ruined husk of shattered glass and a sharp puddle on the floor, angelfish flopping around helplessly. You wonder briefly if you could eat one.
 
-#not-safekey1
-The mantle is covered with small curios, but what really catches your eye is a TAXIDERMY TIGER HEAD mounted on the wall above it. You think you see something glimmering in its mouth.
+{!has_item(safekey1)} The mantle is covered with small curios, but what really catches your eye is a TAXIDERMY TIGER HEAD mounted on the wall above it. You think you see something glimmering in its mouth.
 
 //gather here?
 //(has-paperweight and not-grager) [*smash fishtank with paperweight] (-> fishtank2)
@@ -97,7 +95,7 @@ The mantle is covered with small curios, but what really catches your eye is a T
 You appraise the fishtank. The red-and-white striped fish are pretty, vibrant against the brick of the old fireplace. What really catches your eye is something half-buried in the sand at the bottom. It glistens, but barely, as if it's made of worn tin. But you can't find any way to open the fishtank— it must be built into the hearth, and a few repeated taps on the glass tell you it's too heavy to break. You'll have to look around and see if anything else gives you ideas.
 
 //go back to choice loop/gather in room_fireplace
-->->
+-> DONE
 = fishtank2
 You heft the paperweight in both hands and swing it as hard as you can into the glass.
 
@@ -105,18 +103,18 @@ CRASH
 
 Splinters of glass fly past your face. Water rushes out of the jagged hole in the side of the fishtank, carrying angelfish with it. You stick your little hand in through the hole and pry the mystery object from the bottom. It's covered in sand and gravel, so it takes a few tugs. #has-grager
 //(-> instruments.grager)
-->->
+-> DONE
 = tiger1
 The snarling tiger head on the wall above stares down at you with glass eyes. There definitely is something gold on its tongue, but you can't quite see what, and it's too high up for you to reach— you're not quite five foot, after all.
 
 //go back to choice loop/gather in room_fireplace
-->->
+-> DONE
 = tiger2
 Looking up at the tiger head, you have a brilliant realization. You can just stand on something to be taller!
 
-You cross the room back to the armchair and grab its footstool. With some difficulty— it's heavier than it looks— you carry it over, set it down in front of the [has-grager: ruined] fishtank, and stand on it. Perfect. You're now at eye height with the tiger and can easily reach in and yank the object you saw out: an ornate golden key, gold thread wrapped around the knob at the end. So what if you also yank out the tiger's left tooth?#has-safekey1
+You cross the room back to the armchair and grab its footstool. With some difficulty— it's heavier than it looks— you carry it over, set it down in front of the [has-grager: ruined] fishtank, and stand on it. Perfect. You're now at eye height with the tiger and can easily reach in and yank the object you saw out: an ornate golden key, gold thread wrapped around the knob at the end. So what if you also yank out the tiger's left tooth? #has-safekey1
 //go back to choice loop/gather in room_fireplace
-->->
+-> DONE
 
 === room_lunarium ===
 The LUNARIUM is your favorite part of the parlor, and entertained you for a solid fifteen minutes when your Master first dropped you off. It's bathed in soft moonglow through the floor-to-ceiling windows and skylights, and the lushest part of the jungle trees and creeping vines are visible outside. Inside, a large BIRDCAGE covered with a blanket sits on an iron table, inside of which you know the Wizard's three PARROTS are sleeping. Because she had to repeatedly ask you not to annoy them. On shelves around, and on the dark slate-tiled floor, tropical PLANTS from all over the Recursive Moons sit in brightly colored pots. Orchids, hibiscus, birds-of-paradise, and others you've never seen.
@@ -128,12 +126,12 @@ Pride of place on the floor is given to the three largest plants, half as tall a
 //(not-fedplants) [+examine the plants] (-> plants)
 //(seen-parrots and has-lunarium1 and has-lunarium2) [*feed the parrots to the plants]
 //[+look somewhere else] (-> hub)
-->->
+-> DONE
 = parrots1
 You lift the blanket over the ornate birdcage and look in at the parrots. They're mid-sized, all morphs of the same species only found on the Hundred And Thirty-First Moon— a pink one, standard wild coloring, a domestic-bred green colored one, and a mottled pink-and-green that must be a crossbreed. They lift their heads from under their wings and look at you sleepily.
 
 You (not-parrots: grab a pink feather from the bottom of the cage,) pull the blanket back down(,) and let them be for now.
-->->
+-> DONE
 //back to lunarium gather
 = parrots2
 That which is above is like that which is below, right? And the parrots are definitely ABOVE the plants. And like consumes like, something like that? And you saw a plant eating a much larger bird outside the window. And the colors of the parrots in the cage are the same as the colors of the plants. And you want to see a plant eat something. Ergo, you should feed the parrots to the giant carnivorous plants. QED.
@@ -145,11 +143,11 @@ You feed the green parrot to the green flytrap, the pink parrot to the pink sund
 . . . nothing in particular happens.
 
 BUT when you drop the last parrot into the pitcher, the water is displaced and a small iron key spills over the side, so you must have done something right? #fed-plants
-->->
+-> DONE
 //back to lunarium gather
 = plants
 The Wizard's three carnivorous plants are enormous, and you want to see them eat something, but you're at least a little frightened that they could eat YOU. So for once you don't poke at them.
-->->
+-> DONE
 //back to lunarium gather
 
 === room_armchair ===
@@ -161,28 +159,28 @@ A copper TELESCOPE on a stand is aimed out the window, gazing out into the lunar
 //*make yourself some tea (-> samovar)
 //+look through the telescope (been to telescope ->telescope1, else telescope2)
 //[+look somewhere else] (-> hub)
-->->
+-> DONE
 = sit
 You sit down (been here: again) and put your feet up. You almost sink into the upholstery, and the footstool is comfortable under your feet. You wonder if the Wizard likes to fall asleep in this armchair. Your Master calls this 'pondering the infinities of the universe.'
 
 You think you doze for a few minutes, but you wake up with a crook in your neck and a renewed determination to get out of this stuffy parlor.
 //go back to armchair gather
-->->
+-> DONE
 = samovar
 You decide to make yourself some tea. The samovar already has hot water; from your experience most wizards always have hot water for tea. The concentrate from the teapot on top smells fragrant and spiced. You spill half of it over the table as you pour concentrate and water into your cup, then spill more as you try to dump as much milk and sugar in as humanly possible. #has-tea
 
 Then you burn your tongue on it. Damn, it's hot! You have to put this down and drink it later.
 //go back to armchair gather
-->->
+-> DONE
 = telescope1
 You pull the telescope around to fit your height and peer through. It takes extensive fiddling to focus it, but your Master's always said you were too clever for your own good, and you figure it out. (glue this to telescope2? thread it in and glue it? i want one paragraph)
 //go to telescope2
-->->
+-> DONE
 
 = telescope2
 The telescope lense comes into focus in the midst of the lush jungle outside, on a large amethyst parrot stuck in a venus flytrap about your own height, struggling in futility. You watch with fascination for several minutes before you get bored.
 //back to armchair gather
-->->
+-> DONE
 
 === room_desk ===
 The Wizard's hulking wooden desk is carved with lunar sigils and elaborate swirls; behind it is an equally oversized wooden chair. Its surface is littered with BOOKS; besides those, the only notable object is a huge and brilliant GEODE, cracked open and currently serving as a PAPERWEIGHT.
@@ -194,11 +192,11 @@ The Wizard's hulking wooden desk is carved with lunar sigils and elaborate swirl
 //(not-lunarium2 and not-books and has-tea) [*examine books] (-> books3)
 //(not-drawer) [*examine desk] (->desk)
 //(has-deskkey and seen-drawer) [*use key on drawer] (-> drawer)
-->->
+-> DONE
 = desk
 Nothing on the desk currently interests you. You poke around aimlessly, looking for— hahah, yes! You knew this thing had to have secret compartments! There's a false back to this drawer, and if you look closely you can find a tiny keyhole. It looks too small for you to pick even with the tip of one of the desk's many fountain pens.#seen-drawer
 //if has-deskkey -> drawer, if not -> gather in room_desk
-->->
+-> DONE
 
 = drawer
 CLICK
@@ -206,10 +204,10 @@ CLICK
 The small iron key fits perfectly in the lock. You open the secret compartment with only a touch.
 
 //-> instruments.kazoo
-->->
+-> DONE
 = books1
 You thumb idly through some of the books. Curiously, their pages are all blank. Are the secrets inside locked away by some magic spell, or is it invisible ink? You stuff a smaller volume in the pocket of your apprentice robes to ask the Wizard about.
-->->
+-> DONE
 = books2
 (wizardclue-books: You recall the Wizard's words about fire magic unlocking the writing in the tomes.)(else: You recall your Master talking about magic books that only show their words when exposed to magical fire.) Fire magic is one of the most difficult elemental masteries, so it's an easy way to hide something from all but the most talented sorcerors. The times (your Master has/he's) tried to teach you it you've usually just exploded things. There must be another way to unlock the writing on the page.
 
@@ -228,7 +226,7 @@ Disappointed, you thumb through some wet and stuck-together pages— oh, there's
 
 The words are badly smudged, but you think they say 'That which is above is like to that which is below, and that which is below is like to that which is above, and like consumes like.'#has-lunarium2
 //back to desk loop
-->->
+-> DONE
 
 = books3
 You thumb idly through some of the books. Curiously, their pages are all blank. Are the secrets inside locked away by some magic spell, or is it invisible ink?
@@ -240,10 +238,10 @@ Think, think. What else do you have that's extremely hot?
 Your eyes flicker to the tea on the table.
 
 //go to teatime gather
-->->
+-> DONE
 = take_paperweight
 You pick up the paperweight. It's so heavy you need to pick it up with both hands. You whistle admiringly at the way the light catches on the uneven crystals as you move it around. You may be a little shit, but you ARE a future wizard, so you can always appreciate a fancy rock. Maybe you can steal this when you figure out how to leave the parlor. #has-paperweight
-->->
+-> DONE
 
 === room_portraits ===
 The entire south wall of the parlor is a gallery of PAINTINGS: maps and orbital chartts of the Recursive Moons, illustrations of strange beasts and ancient queens— but mostly PORTRAITS of old people you don't care about. You spot one of the King, another of the Prince-Consort and Crown Princess (just a little older than you, in this, with a prodigious amount of pimples), and several of your Master.
@@ -253,7 +251,7 @@ The ones that catch your eye, though, are a set of six paintings of the Wizard h
 //gather here
 //[*rearrange portraits]
 //[+look somewhere else] (-> hub)
-->->
+-> DONE
 = portraits
 Despite calling you a menace to society, your Master DOES have to admit that you're unusually good at organizing things. You organize crystals and salts by color and shininess before you use them in spells, you organize his spellbooks by reverse first name alphabetical order and prose style while he's not looking, and you organize foods on your plate by length, texture, and overall slurpability before you eat them. 
 
@@ -264,54 +262,54 @@ Fortunately, they're at eye height, so it's easy enough to rearrange them. New m
 As you turn to go explore elsewhere, you hear a crash and a ripping noise. You must have hung the last painting funny, because it's fallen off the wall. And torn. Ah well.
 
 An ornate golden key with purple thread wrapped around the knob falls to the floor as you pick it up and re-hang it. It must have been stuck to the back of the frame.
-->->
+-> DONE
 //back to portraits gather
 
 === room_rug ===
 As you're crossing the room to (the desk/the portrait wall/the armchair), you trip and stumble in the middle of the room on an unexpected lump. It sends you tumbling forward smack on your face.
 
 Sitting up, you see you're on one of the many antique RUGS in the parlor, an ornate purple-and-gold affair woven with flowering vines and birds. There . . . is . . . a very large and SUSPICIOUSLY SQUARE LUMP under the fabric, which your foot must have caught on.
-->->
+-> DONE
 
 //*[move rug] (-> move_rug)
 = move_rug
 You drag the heavy cloth aside and find a square metal SAFE with two keyholes.
 //go to safe2 gather
-->->
+-> DONE
 
 = safe1
 In the middle of the room you've dragged the ornate purple-and-gold rug to one side, exposing a square metal SAFE set into the dark wood floor. It has two keyholes.
-->->
+-> DONE
 //gather here
 //(has-safekey1 and has-safekey2) [*use the gold and purple keys] (-> open_safe)
 //[+look somewhere else] (-> hub)
 
 = open_safe
 You take out the intricate gold- and purple-threaded keys. It takes a minute to match each to a lock, but once you do the safe pops open with a rusty creak.
-->->
+-> DONE
 //go to instruments_otamatone
 
 === instruments ===
 what happens when you find each instrument.
-->->
+-> DONE
 
 = take_grager
 the grager
-->->
+-> DONE
 
 = kazoo
 the kazoo
-->->
+-> DONE
 
 = otamatone
 the otomatone.
-->->
+-> DONE
 
 === outro ===
 the game ends because you annoyed the wizard too much and she opens the door and kicks you out.
-->->
+-> DONE
 
 === credits ===
 TOTALLY NORMAL WIZARD APPRENTICE was designed by Stephen March (hecleretical.itch.io) and chasay (chasay.itch.io). It was written by Stephen March, programmed by chasay, and illustrated by laughingpine
-->->
+-> DONE
     -> END
