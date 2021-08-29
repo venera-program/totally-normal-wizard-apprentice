@@ -68,12 +68,26 @@ At the WEST end of the room is a cavernous FISHTANK-FIREPLACE, and next to that 
 //conditional text based on if you've seen this loop before
 What should you try [first/next]?
 
-//choices here: a) examine desk (if not been to rug, -> rug, if have seen rug, -> desk)
+//choices here: a) examine desk (if not been to rug, -> rug, if seen-rug, -> desk)
 //b) examine paintings (see a) c) examine armchair (see a) d) (conditional to seen-rug) examine safe e) examine lunarium f) (conditional to not (both have-grager AND have-safekey1)) examine fireplace g) bother the wizard
 -> DONE
 
 === room_couch ===
-the couch. talk to the wizard. she has clues for the paperweight, the paintings, the safe, the tea, the books, the parrots in the lunarium, and the telescope. u can also ask if your master is back yet (again).
+The Master Wizard appears to be about twice your age, although of course she is over five hundred. She has short dark hair, extravagant clothes befitting her station, and a variety of jewelry crafted out of gold and precious stones. She currently is lying down with a pillow over her head, snoring gently.
+
+It takes several loud throat-clearings and a bit of poking to get her to sit up, (tired / somewhat surly / increasingly annoyed / extremely grouchily / clearly at the utmost limit of her patience).
+//this is a sequence
+
+"Whadyouwan'???"
+
+//gather here
+//(has-paperweight) [+ask about paperweight] (-> hint_paperweight)
+//(seen-rug) [+ask about safe] (-> hint_safe)
+//(has-tea) [+offer her some tea] (-> hint_tea)
+//(seen-books) [+ask about books] (-> hint_books)
+//(has-feather) [+ask about parrots] (-> hint_parrots)
+//[+ask if your Master is back] (-> master_convo)
+//[+leave her alone] (-> hub)
 -> DONE
 
 === room_fireplace ===
@@ -273,7 +287,7 @@ Sitting up, you see you're on one of the many antique RUGS in the parlor, an orn
 
 //*[move rug] (-> move_rug)
 = move_rug
-You drag the heavy cloth aside and find a square metal SAFE with two keyholes.
+You drag the heavy cloth aside and find a square metal SAFE with two keyholes.#seen-rug
 //go to safe2 gather
 -> DONE
 
@@ -297,19 +311,33 @@ what happens when you find each instrument.
 the grager
 -> DONE
 
-= kazoo
+= take_kazoo
 the kazoo
 -> DONE
 
-= otamatone
+= take_otamatone
 the otomatone.
+-> DONE
+
+= instrument_one
+first instrument destroyed.
+->DONE
+
+= instrument_two
+second instrument destroyed.
 -> DONE
 
 === outro ===
 the game ends because you annoyed the wizard too much and she opens the door and kicks you out.
 -> DONE
 
+= instrument_three
+blah.
+-> DONE
+
 === credits ===
-TOTALLY NORMAL WIZARD APPRENTICE was designed by Stephen March (hecleretical.itch.io) and chasay (chasay.itch.io). It was written by Stephen March, programmed by chasay, and illustrated by laughingpine
+TOTALLY NORMAL WIZARD APPRENTICE was designed by Stephen March (hecleretical.itch.io) and chasay (chasay.itch.io). It was written by Stephen March, programmed by chasay, and illustrated by Eva (laughingpineapple.itch.io).
+
+Thank you for playing!
 -> DONE
     -> END
