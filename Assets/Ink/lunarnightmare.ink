@@ -124,6 +124,7 @@ Pride of place on the floor is given to the three largest plants, half as tall a
 //[+look somewhere else] (-> hub)
 ->->
 = parrots1
+You lift the blanket over the ornate birdcage and look in at the parrots. They're mid-sized, all morphs of the same species only found on the Hundred And Thirty-First Moon— a pink one, standard wild coloring, a domestic-bred green colored one, and a mottled pink-and-green that must be a crossbreed.
 
 ->->
 = parrots2
