@@ -63,7 +63,7 @@ At the WEST end of the room is a cavernous FISHTANK-FIREPLACE, and next to that 
 //conditional text based on if you've seen this loop before
 What should you try [first/next]?
 
-//choices here: a) examine desk b) examine paintings c) examine armchair d) (conditional to seen-rug) examine safe e) examine lunarium f) examine fireplace g) bother the wizard
+//choices here: a) examine desk b) examine paintings c) examine armchair d) (conditional to seen-rug) examine safe e) examine lunarium f) (conditional to not (both have-grager AND have-safekey1)) examine fireplace g) bother the wizard
 ->->
 
 === room_couch ===
@@ -76,18 +76,27 @@ the couch. talk to the wizard.
 The Wizard's FIREPLACE probably did hold fires at some point. It has a mantle and casing carved of heavy pale marble in ornate swoops and swirls; a brass fire grate and poker stand off to one side half-forgotten. At some point in the last five hundred years, though, the Wizard has converted the hearth into a large FISHTANK for little candy-striped peppermint angelfish. You tap on the glass.
 
 #has-grager
-uhhh
+The glass FISHTANK in the hearth is now a ruined husk of shattered glass and a sharp puddle on the floor, angelfish flopping around helplessly. You wonder briefly if you could eat one.
 
 #not-safekey1
-The mantle is covered with small curios, but what really catches your eye is a TAXIDERMY TIGER HEAD mounted on the wall above it.
+The mantle is covered with small curios, but what really catches your eye is a TAXIDERMY TIGER HEAD mounted on the wall above it. You think you see something glimmering in its mouth.
 
-#has-safekey1
+//(has-paperweight and not-grager) [*smash fishtank] (-> fishtank2)
+//(not-paperweight) [*examine fishtank] (-> fishtank1)
+//(not-safekey1 and has-footstool) [*drag over the footstool] (->tiger2)
+//(not-safekey and not-footstool) [*examine tiger head] (->tiger1)
 ->->
-= fishtank
-examine fishtank. smash if you have paperweight. get grager.
+= fishtank1
+examine fishtank.
 ->->
-= tiger
-examine tiger head. stand on footstool to get to it if you've already looked at the footstool. get safe key 1.
+= fishtank2
+smash if you have paperweight. get grager.
+->->
+= tiger1
+examine tiger head. cant reach
+->->
+= tiger2
+stand on footstool to get to it if you've already looked at the footstool. get safe key 1.
 ->->
 
 === room_lunarium ===
