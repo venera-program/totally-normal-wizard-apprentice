@@ -87,7 +87,7 @@ The mantle is covered with small curios, but what really catches your eye is a T
 //(not-safekey and not-footstool) [*examine tiger head] (->tiger1)
 ->->
 = fishtank1
-examine fishtank.
+see grager in fishtank.
 ->->
 = fishtank2
 smash if you have paperweight. get grager.
@@ -110,7 +110,9 @@ examine the carnivorous plants
 ->->
 
 === room_armchair ===
-the armchair. make and take tea, take footstool, look through telescope and get lunarium clue 1.
+The Wizard's ARMCHAIR by the window is somehow both fancy and squashy— lavishly upholstered, yet comfortable looking. It has a matching FOOTSTOOL nearby, equally comfortable looking, and a wooden table taken up by various teapots, cups, saucers, sugar bowls, and containers of TEA. On the floor stands an enormous enameled SAMOVAR, bright blue and chartreuse and probably big enough to boil you alive inside.
+
+A copper TELESCOPE on a stand is aimed out the window, gazing out into the lunar jungle, dark green foliage rich with translucent flowers and bioluminescent birds.
 ->->
 = footstool
 grab the footstool.
