@@ -1,5 +1,3 @@
-//3/30 segments done
-
 === title ===
 title screen.
 ->->
@@ -63,7 +61,8 @@ At the WEST end of the room is a cavernous FISHTANK-FIREPLACE, and next to that 
 //conditional text based on if you've seen this loop before
 What should you try [first/next]?
 
-//choices here: a) examine desk b) examine paintings c) examine armchair d) (conditional to seen-rug) examine safe e) examine lunarium f) (conditional to not (both have-grager AND have-safekey1)) examine fireplace g) bother the wizard
+//choices here: a) examine desk (if not been to rug, -> rug, if have seen rug, -> desk)
+//b) examine paintings (see a) c) examine armchair (see a) d) (conditional to seen-rug) examine safe e) examine lunarium f) (conditional to not (both have-grager AND have-safekey1)) examine fireplace g) bother the wizard
 ->->
 
 === room_couch ===
@@ -81,22 +80,33 @@ The glass FISHTANK in the hearth is now a ruined husk of shattered glass and a s
 #not-safekey1
 The mantle is covered with small curios, but what really catches your eye is a TAXIDERMY TIGER HEAD mounted on the wall above it. You think you see something glimmering in its mouth.
 
+//gather here?
 //(has-paperweight and not-grager) [*smash fishtank] (-> fishtank2)
-//(not-paperweight) [*examine fishtank] (-> fishtank1)
+//(not-paperweight & not came from fishtank1) [+examine fishtank] (-> fishtank1)
 //(not-safekey1 and has-footstool) [*drag over the footstool] (->tiger2)
-//(not-safekey and not-footstool) [*examine tiger head] (->tiger1)
+//(not-safekey and not-footstool and not came from tiger1) [*examine tiger head] (->tiger1)
+//[+look somewhere else] (-> hub)
 ->->
 = fishtank1
-see grager in fishtank.
+You appraise the fishtank. The red-and-white striped fish are pretty, vibrant against the brick of the old fireplace. What really catches your eye is something half-buried in the sand at the bottom. It glistens, but barely, as if it's made of worn tin. But you can't find any way to open the fishtank— it must be built into the hearth, and a few repeated taps on the glass tell you it's too heavy to break. You'll have to look around and see if anything else gives you ideas.
+
+//go back to choice loop/gather in room_fireplace
 ->->
 = fishtank2
-smash if you have paperweight. get grager.
+You heft the paperweight in both hands and swing it as hard as you can into the glass.
+
+CRASH
+
+Splinters of glass fly past your face. Water rushes out of the jagged hole in the side of the fishtank, carrying angelfish with it. You stick your little hand in through the hole and pry the mystery object from the bottom. It's covered in sand and gravel, so it takes a few tugs. #has-grager
+//(-> instruments.grager)
 ->->
 = tiger1
-examine tiger head. cant reach
+The snarling tiger head on the wall above stares down at you with glass eyes. There definitely is something gold on its tongue, but you can't quite see what, and it's too high up for you to reach— you're not quite five foot, after all.
+
+//go back to choice loop/gather in room_fireplace
 ->->
 = tiger2
-stand on footstool to get to it if you've already looked at the footstool. get safe key 1.
+Looking up at the tiger head, you have a brilliant realization. You can just stand on something to be taller!
 ->->
 
 === room_lunarium ===
@@ -158,8 +168,8 @@ examine safe. open if you have both safe keys and find otamatone.
 what happens when you find each instrument.
 ->->
 
-= gragger
-the gragger
+= grager
+the grager
 ->->
 
 = kazoo
