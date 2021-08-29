@@ -81,7 +81,7 @@ The glass FISHTANK in the hearth is now a ruined husk of shattered glass and a s
 The mantle is covered with small curios, but what really catches your eye is a TAXIDERMY TIGER HEAD mounted on the wall above it. You think you see something glimmering in its mouth.
 
 //gather here?
-//(has-paperweight and not-grager) [*smash fishtank] (-> fishtank2)
+//(has-paperweight and not-grager) [*smash fishtank with paperweight] (-> fishtank2)
 //(not-paperweight & not came from fishtank1) [+examine fishtank] (-> fishtank1)
 //(not-safekey1 and seen-footstool) [*drag over the footstool] (->tiger2)
 //(not-safekey and not-footstool and not came from tiger1) [+examine tiger head] (->tiger1)
@@ -113,10 +113,18 @@ You cross the room back to the armchair and grab its footstool. With some diffic
 ->->
 
 === room_lunarium ===
-the lunarium. feed the parrots to the plants, get desk key.
+The LUNARIUM is your favorite part of the parlor, and entertained you for a solid fifteen minutes when your Master first dropped you off. It's bathed in soft moonglow through the floor-to-ceiling windows and skylights, and the lushest part of the jungle trees and creeping vines are visible outside. Inside, a large BIRDCAGE covered with a blanket sits on an iron table, inside of which you know the Wizard's three PARROTS are sleeping. Because she had to repeatedly ask you not to annoy them. On shelves around, and on the dark slate-tiled floor, tropical PLANTS from all over the Recursive Moons sit in brightly colored pots. Orchids, hibiscus, birds-of-paradise, and others you've never seen.
+
+Pride of place on the floor is given to the three largest plants, half as tall as you: a pink SUNDEW, a green VENUS FLYTRAP, and a pink and green PITCHER plant. The Wizard refused to let you feed them your vegetables from lunch.
+
+//gather
+//(not-parrots) [+bother the parrots] (-> parrots1)
+//(not-fedplants) [+examine the plants] (-> plants)
+//(seen-parrots and has-lunarium1 and has-lunarium2) [*feed the parrots to the plants]
+//[+look somewhere else] (-> hub)
 ->->
 = parrots1
-examine the parrots. take a feather for inventory clue?
+
 ->->
 = parrots2
 feeding time.
@@ -142,9 +150,9 @@ You think you doze for a few minutes, but you wake up with a crook in your neck 
 //go back to armchair gather
 ->->
 = samovar
-You decide to make yourself some tea. The samovar already has hot water; the Wizard told you a fire spirit lives in it and keeps it warm at all times, in case she wants a drink during late night research. The concentrate from the teapot on top of the water heater smells fragrant and spiced. You spill half of it over the table as you pour it into your cup, then spill more as you try to dump as much milk and sugar in as humanly possible. #has-tea
+You decide to make yourself some tea. The samovar already has hot water; from your experience most wizards always have hot water for tea. The concentrate from the teapot on top smells fragrant and spiced. You spill half of it over the table as you pour concentrate and water into your cup, then spill more as you try to dump as much milk and sugar in as humanly possible. #has-tea
 
-Then you burn your tongue on it. Damn, it's hot! Stupid fire spirit. You have to put it down and drink it later.
+Then you burn your tongue on it. Damn, it's hot! You have to put this down and drink it later.
 //go back to armchair gather
 ->->
 = telescope1
@@ -159,31 +167,87 @@ The telescope lense comes into focus in the midst of the lush jungle outside, on
 
 === room_desk ===
 The Wizard's hulking wooden desk is carved with lunar sigils and elaborate swirls; behind it is an equally oversized wooden chair. Its surface is littered with BOOKS; besides those, the only notable object is a huge and brilliant GEODE, cracked open and currently serving as a PAPERWEIGHT.
-//(not has-paperweight
+
+//gather here
+//(not has-paperweight) [*take paperweight] (-> paperweight)
+//(not-lunarium2 and not-tea and not-books) [*examine books] (-> books1)
+//(not-lunarium2 and has-tea and seen-books) [*examine books again] (-> books2)
+//(not-lunarium2 and not-books and has-tea) [*examine books] (-> books3)
+//(not-drawer) [*examine desk] (->desk)
+//(has-deskkey and seen-drawer) [*use key on drawer] (-> drawer)
 ->->
 = desk
-examine desk and find locked drawer.
+Nothing on the desk currently interests you. You poke around aimlessly, looking for— hahah, yes! You knew this thing had to have secret compartments! There's a false back to this drawer, and if you look closely you can find a tiny keyhole. It looks too small for you to pick even with the tip of one of the desk's many fountain pens.#seen-drawer
+//if has-deskkey -> drawer, if not -> gather in room_desk
 ->->
 
 = drawer
-open with desk key if you have it and get kazoo.
+CLICK
+
+The small iron key fits perfectly in the lock. You open the secret compartment with only a touch.
+
+//-> instruments.kazoo
 ->->
 = books1
-look at books.
+You thumb idly through some of the books. Curiously, their pages are all blank. Are the secrets inside locked away by some magic spell, or is it invisible ink? You stuff a smaller volume in the pocket of your apprentice robes to ask the Wizard about.
 ->->
 = books2
-if you've made tea, pour tea on books and get lunarium clue 2.
+(wizardclue-books: You recall the Wizard's words about fire magic unlocking the writing in the tomes.)(else: You recall your Master talking about magic books that only show their words when exposed to magical fire.) Fire magic is one of the most difficult elemental masteries, so it's an easy way to hide something from all but the most talented sorcerors. The times (your Master has/he's) tried to teach you it you've usually just exploded things. There must be another way to unlock the writing on the page.
+
+Think, think. What else do you have that's extremely hot?
+
+Your eyes flicker to the tea on the table.
+
+//gather: teatime
+//choice: *[dump tea on books]
+
+The Wizard snores peacefully on the couch with a pillow over her face as you empty the sugar bowl (into your mouth), fill it with tea and hot water, and carry it over to her desk. You spread the books out with their pages open and methodically pour boiling tea over the possibly centuries old and undoubtedly priceless tomes.
+
+This mostly just makes them wet and stained.
+
+Disappointed, you thumb through some wet and stuck-together pages— oh, there's actually a single line revealed on one of them. Your hypothesis must have been right! You proudly resolve to tell your Master about your engenuity. Someone could write a paper about this.
+
+The words are badly smudged, but you think they say 'That which is above is like to that which is below, and that which is below is like to that which is above, and like consumes like.'#has-lunarium2
+//back to desk loop
+->->
+
+= books3
+You thumb idly through some of the books. Curiously, their pages are all blank. Are the secrets inside locked away by some magic spell, or is it invisible ink?
+
+Actually, You recall your Master talking about magic books that only show their words when exposed to magical fire.) Fire magic is one of the most difficult elemental masteries, so it's an easy way to hide something from all but the most talented sorcerors. The times he's tried to teach you it you've usually just exploded things. There must be another way to unlock the writing on the page.
+
+Think, think. What else do you have that's extremely hot?
+
+Your eyes flicker to the tea on the table.
+
+//go to teatime gather
 ->->
 = paperweight
-take paperweight.
+You pick up the paperweight. It's so heavy you need to pick it up with both hands. You whistle admiringly at the way the light catches on the uneven crystals as you move it around. You may be a little shit, but you ARE a future wizard, so you can always appreciate a fancy rock. Maybe you can steal this when you figure out how to leave the parlor. #has-paperweight
+//back to desk loop
 ->->
 
 === room_portraits ===
-the portraits. rearrange portraits and get safe key 2.
+The entire south wall of the parlor is a gallery of PAINTINGS: maps and orbital chartts of the Recursive Moons, illustrations of strange beasts and ancient queens— but mostly PORTRAITS of old people you don't care about. You spot one of the King, another of the Prince-Consort and Crown Princess (just a little older than you, in this, with a prodigious amount of pimples), and several of your Master.
+
+The ones that catch your eye, though, are a set of six paintings of the Wizard herself, dated to various times within the last five hundred years. Annoyingly, someone has hung them out of order— they were clearly made as a set; she's in the same clothes, and the Eleventh Moon is visible behind her in each, its phases progressing in what SHOULD be chronological order. But on the wall, they're jumbled!
+
+//gather here
+//[*rearrange portraits]
+//[+look somewhere else] (-> hub)
 ->->
 = portraits
-examine and rearrange the portraits.
+Despite calling you a menace to society, your Master DOES have to admit that you're unusually good at organizing things. You organize crystals and salts by color and shininess before you use them in spells, you organize his spellbooks by reverse first name alphabetical order and prose style while he's not looking, and you organize foods on your plate by length, texture, and overall slurpability before you eat them. 
+
+Seeing the moon phases out of order makes something twitch in your face just below your left eye.
+
+Fortunately, they're at eye height, so it's easy enough to rearrange them. New moon, waxing crescent, waxing half moon, waning gibbous, waning crescent. Wizards are mostly ageless, so she doesn't look different in any of them, but seeing the dates and phases line up makes you feel satisfied.
+
+As you turn to go explore elsewhere, you hear a crash and a ripping noise. You must have hung the last painting funny, because it's fallen off the wall. And torn. Ah well.
+
+An ornate golden key with purple thread wrapped around the knob falls to the floor as you pick it up and re-hang it. It must have been stuck to the back of the frame.
 ->->
+//back to portraits gather
 
 === room_rug ===
 the rug. move rug, open the safe with two safe keys and get otomatone.
