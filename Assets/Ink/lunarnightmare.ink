@@ -66,7 +66,7 @@ What should you try [first/next]?
 ->->
 
 === room_couch ===
-the couch. talk to the wizard.
+the couch. talk to the wizard. she has clues for the paperweight, the paintings, the safe, the tea, the books, the parrots in the lunarium, and the telescope. u can also ask if your master is back yet (again).
 ->->
 
 === room_fireplace ===
@@ -83,8 +83,8 @@ The mantle is covered with small curios, but what really catches your eye is a T
 //gather here?
 //(has-paperweight and not-grager) [*smash fishtank] (-> fishtank2)
 //(not-paperweight & not came from fishtank1) [+examine fishtank] (-> fishtank1)
-//(not-safekey1 and has-footstool) [*drag over the footstool] (->tiger2)
-//(not-safekey and not-footstool and not came from tiger1) [*examine tiger head] (->tiger1)
+//(not-safekey1 and seen-footstool) [*drag over the footstool] (->tiger2)
+//(not-safekey and not-footstool and not came from tiger1) [+examine tiger head] (->tiger1)
 //[+look somewhere else] (-> hub)
 ->->
 = fishtank1
@@ -107,38 +107,65 @@ The snarling tiger head on the wall above stares down at you with glass eyes. Th
 ->->
 = tiger2
 Looking up at the tiger head, you have a brilliant realization. You can just stand on something to be taller!
+
+You cross the room back to the armchair and grab its footstool. With some difficulty— it's heavier than it looks— you carry it over, set it down in front of the [has-grager: ruined] fishtank, and stand on it. Perfect. You're now at eye height with the tiger and can easily reach in and yank the object you saw out: an ornate golden key, gold thread wrapped around the knob at the end. So what if you also yank out the tiger's left tooth?#has-safekey1
+//go back to choice loop/gather in room_fireplace
 ->->
 
 === room_lunarium ===
 the lunarium. feed the parrots to the plants, get desk key.
 ->->
-= parrots
+= parrots1
 examine the parrots. take a feather for inventory clue?
+->->
+= parrots2
+feeding time.
 ->->
 = plants
 examine the carnivorous plants
 ->->
 
 === room_armchair ===
-The Wizard's ARMCHAIR by the window is somehow both fancy and squashy— lavishly upholstered, yet comfortable looking. It has a matching FOOTSTOOL nearby, equally comfortable looking, and a wooden table taken up by various teapots, cups, saucers, sugar bowls, and containers of TEA. On the floor stands an enormous enameled SAMOVAR, bright blue and chartreuse and probably big enough to boil you alive inside.
+The Wizard's ARMCHAIR by the window is somehow both fancy and squashy— lavishly upholstered, yet comfortable looking. It has a matching FOOTSTOOL nearby, equally comfortable looking, and a wooden table taken up by various teapots, cups, saucers, sugar bowls, and containers of TEA. On the floor stands an enormous enameled SAMOVAR, bright blue and chartreuse and probably big enough to boil you alive inside. #seen-footstool
 
 A copper TELESCOPE on a stand is aimed out the window, gazing out into the lunar jungle, dark green foliage rich with translucent flowers and bioluminescent birds.
+//gather here
+//+sit down and put your feet up (->sit)
+//*make yourself some tea (-> samovar)
+//+look through the telescope (been to telescope ->telescope1, else telescope2)
+//[+look somewhere else] (-> hub)
 ->->
-= footstool
-grab the footstool.
+= sit
+You sit down (been here: again) and put your feet up. You almost sink into the upholstery, and the footstool is comfortable under your feet. You wonder if the Wizard likes to fall asleep in this armchair. Your Master calls this 'pondering the infinities of the universe.'
+
+You think you doze for a few minutes, but you wake up with a crook in your neck and a renewed determination to get out of this stuffy parlor.
+//go back to armchair gather
 ->->
 = samovar
-make tea with the samovar. take tea for inventory clue.
+You decide to make yourself some tea. The samovar already has hot water; the Wizard told you a fire spirit lives in it and keeps it warm at all times, in case she wants a drink during late night research. The concentrate from the teapot on top of the water heater smells fragrant and spiced. You spill half of it over the table as you pour it into your cup, then spill more as you try to dump as much milk and sugar in as humanly possible.
+
+Then you burn your tongue on it. Damn, it's hot! Stupid fire spirit. You have to put it down and drink it later.
+//go back to armchair gather
 ->->
-= telescope
-look through the telescope. get clue.
+= telescope1
+You pull the telescope around to fit your height and peer through. It takes extensive fiddling to focus it, but your Master's always said you were too clever for your own good, and you figure it out. (glue this to telescope2? thread it in and glue it? i want one paragraph)
+//go to telescope2
+->->
+
+= telescope2
+The telescope lense comes into focus on a large amethyst parrot, stuck in a venus flytrap about your own height, struggling in futility. You watch with fascination for several minutes.
+//back to armchair gather
 ->->
 
 === room_desk ===
 the desk. take paperweight, open drawer with desk key and get kazoo, pour tea on books and get lunarium clue 1.
 ->->
 = desk
-examine desk and find locked drawer. open with desk key if you have it and get kazoo.
+examine desk and find locked drawer.
+->->
+
+= drawer
+open with desk key if you have it and get kazoo.
 ->->
 = books
 look at books. if you've made tea, pour tea on books and get lunarium clue 2.
