@@ -124,15 +124,27 @@ Pride of place on the floor is given to the three largest plants, half as tall a
 //[+look somewhere else] (-> hub)
 ->->
 = parrots1
-You lift the blanket over the ornate birdcage and look in at the parrots. They're mid-sized, all morphs of the same species only found on the Hundred And Thirty-First Moon— a pink one, standard wild coloring, a domestic-bred green colored one, and a mottled pink-and-green that must be a crossbreed.
+You lift the blanket over the ornate birdcage and look in at the parrots. They're mid-sized, all morphs of the same species only found on the Hundred And Thirty-First Moon— a pink one, standard wild coloring, a domestic-bred green colored one, and a mottled pink-and-green that must be a crossbreed. They lift their heads from under their wings and look at you sleepily.
 
+You (not-parrots: grab a pink feather from the bottom of the cage,) pull the blanket back down(,) and let them be for now.
 ->->
+//back to lunarium gather
 = parrots2
-feeding time.
+That which is above is like that which is below, right? And the parrots are definitely ABOVE the plants. And like consumes like, something like that? And you saw a plant eating a much larger bird outside the window. And the colors of the parrots in the cage are the same as the colors of the plants. And you want to see a plant eat something. Ergo, you should feed the parrots to the giant carnivorous plants. QED.
+
+This is an excellent decision that makes complete logical sense and will not make anyone angry.
+
+You feed the green parrot to the green flytrap, the pink parrot to the pink sundew, and the pink-and-green bird to the mottled pink and green pitcher plant. A totally logical hypothesis, right?
+
+. . . nothing in particular happens.
+
+BUT when you drop the last parrot into the pitcher, the water is displaced and a small iron key spills over the side, so you must have done something right? #fed-plants
 ->->
+//back to lunarium gather
 = plants
-examine the carnivorous plants
+The Wizard's three carnivorous plants are enormous, and you want to see them eat something, but you're at least a little frightened that they could eat YOU. So for once you don't poke at them.
 ->->
+//back to lunarium gather
 
 === room_armchair ===
 The Wizard's ARMCHAIR by the window is somehow both fancy and squashy— lavishly upholstered, yet comfortable looking. It has a matching FOOTSTOOL nearby, equally comfortable looking, and a wooden table taken up by various teapots, cups, saucers, sugar bowls, and containers of TEA. On the floor stands an enormous enameled SAMOVAR, bright blue and chartreuse and probably big enough to boil you alive inside. #seen-footstool
