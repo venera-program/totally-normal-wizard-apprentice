@@ -2,6 +2,12 @@ INCLUDE logic.ink
 
 LIST inventory = paperweight, grager
 
+=== cws ===
+Hey there! TOTALLY NORMAL WIZARD APPRENTICE is an interactive fiction puzzle game written in the second person, and uses "you" to refer to the player character. 
+
+Additionally, the game contains two instances of comedic (non-graphic) animal death, caused directly by the protagonist. It's obviously not something the makers of this game condone, but if reading about animal harm is distressing or triggering for you, or likewise being identified as a character who does this, you should probably sit this out. Please, take care of yourself while you play. - Stephen
+->->
+
 == intro ===
 
 "I'm bored," you say, for the fiftieth time.
@@ -84,7 +90,7 @@ The mantle is covered with small curios, but what really catches your eye is a T
 //(has-paperweight and not-grager) [*smash fishtank with paperweight] (-> fishtank2)
 //(not-paperweight & not came from fishtank1) [+examine fishtank] (-> fishtank1)
 //(not-safekey1 and seen-footstool) [*drag over the footstool] (->tiger2)
-//(not-safekey and not-footstool and not came from tiger1) [+examine tiger head] (->tiger1)
+//(not-safekey1 and not-footstool and not came from tiger1) [+examine tiger head] (->tiger1)
 //[+look somewhere else] (-> hub)
 -> choices_fireplace
 = fishtank1
@@ -262,14 +268,28 @@ An ornate golden key with purple thread wrapped around the knob falls to the flo
 //back to portraits gather
 
 === room_rug ===
-the rug. move rug, open the safe with two safe keys and get otomatone.
+As you're crossing the room to (the desk/the portrait wall/the armchair), you trip and stumble in the middle of the room on an unexpected lump. It sends you tumbling forward smack on your face.
+
+Sitting up, you see you're on one of the many antique RUGS in the parlor, an ornate purple-and-gold affair woven with flowering vines and birds. There . . . is . . . a very large and SUSPICIOUSLY SQUARE LUMP under the fabric, which your foot must have caught on.
 ->->
+
+//*[move rug] (-> move_rug)
 = move_rug
-move the rug.
+You drag the heavy cloth aside and find a square metal SAFE with two keyholes.
+//go to safe2 gather
 ->->
-= safe
-examine safe. open if you have both safe keys and find otamatone.
+
+= safe1
+In the middle of the room you've dragged the ornate purple-and-gold rug to one side, exposing a square metal SAFE set into the dark wood floor. It has two keyholes.
 ->->
+//gather here
+//(has-safekey1 and has-safekey2) [*use the gold and purple keys] (-> open_safe)
+//[+look somewhere else] (-> hub)
+
+= open_safe
+You take out the intricate gold- and purple-threaded keys. It takes a minute to match each to a lock, but once you do the safe pops open with a rusty creak.
+->->
+//go to instruments_otamatone
 
 === instruments ===
 what happens when you find each instrument.
@@ -292,6 +312,6 @@ the game ends because you annoyed the wizard too much and she opens the door and
 ->->
 
 === credits ===
-us :)
+TOTALLY NORMAL WIZARD APPRENTICE was designed by Stephen March (hecleretical.itch.io) and chasay (chasay.itch.io). It was written by Stephen March, programmed by chasay, and illustrated by laughingpine
 ->->
     -> END
