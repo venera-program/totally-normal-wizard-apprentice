@@ -1,6 +1,6 @@
-=== title ===
-title screen.
-->->
+INCLUDE logic.ink
+
+LIST inventory = paperweight, grager
 
 == intro ===
 
@@ -86,7 +86,7 @@ The mantle is covered with small curios, but what really catches your eye is a T
 //(not-safekey1 and seen-footstool) [*drag over the footstool] (->tiger2)
 //(not-safekey and not-footstool and not came from tiger1) [+examine tiger head] (->tiger1)
 //[+look somewhere else] (-> hub)
-->->
+-> choices_fireplace
 = fishtank1
 You appraise the fishtank. The red-and-white striped fish are pretty, vibrant against the brick of the old fireplace. What really catches your eye is something half-buried in the sand at the bottom. It glistens, but barely, as if it's made of worn tin. But you can't find any way to open the fishtank— it must be built into the hearth, and a few repeated taps on the glass tell you it's too heavy to break. You'll have to look around and see if anything else gives you ideas.
 
@@ -222,9 +222,8 @@ Your eyes flicker to the tea on the table.
 
 //go to teatime gather
 ->->
-= paperweight
+= take_paperweight
 You pick up the paperweight. It's so heavy you need to pick it up with both hands. You whistle admiringly at the way the light catches on the uneven crystals as you move it around. You may be a little shit, but you ARE a future wizard, so you can always appreciate a fancy rock. Maybe you can steal this when you figure out how to leave the parlor. #has-paperweight
-//back to desk loop
 ->->
 
 === room_portraits ===
@@ -263,7 +262,7 @@ examine safe. open if you have both safe keys and find otamatone.
 what happens when you find each instrument.
 ->->
 
-= grager
+= take_grager
 the grager
 ->->
 
