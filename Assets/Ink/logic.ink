@@ -54,7 +54,7 @@
 
 //(not-safekey1 and not-footstool and not came from tiger1) [+examine tiger head] (->tiger1)
 # move: room_fireplace.tiger1
-+ {!has_item(safekey1) && !seen_obj(footstool) && !came_from(-> room_fireplace.tiger1)} [Rxamine the TIGER HEAD]
++ {!has_item(safekey1) && !seen_obj(footstool) && !came_from(-> room_fireplace.tiger1)} [Examine the TIGER HEAD]
 
 //(not-safekey1 and seen-footstool) [*drag over the footstool] (->tiger2)
 # move: room_fireplace.tiger2
