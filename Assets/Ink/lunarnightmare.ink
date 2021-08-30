@@ -149,6 +149,10 @@ Some people are absolute killjoys.
 "Do you know when my Master is coming back?"
 
 "If I were your Master," she says sleepily, "I might never come back."
+
+"That's not very nice," you protest. 
+
+The Wizard lets out an incredulous snort.
 -> DONE
 //back to choice
 
@@ -370,33 +374,79 @@ what happens when you find each instrument.
 -> DONE
 
 = take_grager
-the grager
+You now hold a oxidized TIN GRAGER in your hand, still dripping with saltwater. And there is only one thing to do with a grager: rattle it around wildly. Like so:
+
+GRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGR
 -> DONE
+//go to first instrument, second instrument, or outro depending
 
 = take_kazoo
-the kazoo
+Hidden in the compartment are uncut rubies the size of quail eggs, letters representing blackmail material for every duke at court, and fistfulls of gold coins three centuries old.
+
+Unfortunately for all those interesting things, there is also a shiny silver kazoo. You lift it to your lips immediately:
+
+BZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 -> DONE
+//go to first instrument, second instrument, or outro depending
 
 = take_otamatone
-the otomatone.
+Inside the safe is, you will learn later, a dagger forged and enchanted to kill the Prince of Three Suns the very instant it draws a single drop of blood from his body. It does momentarily catch your attention— until you spot, tucked behind it in a corner of the safe, an otomatone.
+
+Your Master threw your otamatone off the highest tower in the realm on the second day of your apprenticeship. How can you resist?:
+
+DO DO DO DO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO DO DO DO DO DO DO DO DO DO DO DO DO DOOOO DOOOOO DO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO DODO DODODO DO DO DO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOO DOODDDDDDDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 -> DONE
+////go to first instrument, second instrument, or outro depending
 
 = instrument_one
-first instrument destroyed.
+A bolt of pale lightning shoots from the Wizard's hand and zaps the (instrument name) from existance. You yelp as the electric shock tingles through your hand.
+
+"STOP THAT," growls the Master Wizard. "Some of us are trying to SLEEP."
+
+"But I'm bored," you say in a totally reasonable and mature and definitely not whiny tone of voice.
+
+She doesn't respond, only grumbling curses under her breath as she rolls over on the couch to go back to sleep.
 ->DONE
+//go to hub
 
 = instrument_two
-second instrument destroyed.
+The (instrument name) dissolves atom by atom from your hand and reassembles itself in the hands of the Wizard, who casually crushes it into dust with undoubtedly magical strength.
+
+"You are BEGINNING to IRRITATE ME," she snarls. "STOP whatever it is you THINK YOU'RE DOING and let me sleep. Go read a book or something! When I was your age I loved books!"
+
+You mutter mutinously under your breath as she lies back down and piles pillows on top of herself, like a cocoon against your racket.
 -> DONE
+//go to hub
 
 === outro ===
-the game ends because you annoyed the wizard too much and she opens the door and kicks you out.
--> DONE
+It is the absolute deafening silence and smell of ozone in the air that makes you pause your gleeful abuse of a perfectly good (instrument). When you turn around the Wizard is standing directly behind you.
 
-= instrument_three
-blah.
--> DONE
+She has quite evidently surveyed her ripped paintings, plundered hiding places, broken taxidermies, smashed fishtank, missing parrots, ruined books, and generally ransacked-by-an-invading-army parlor and decided to become more furious than you have ever seen anybody be in your entire life. She's visibly smoking. It must be a wizard thing.
 
+"Get out," she says quietly.
+
+"Huh? Why?"
+
+"Why?" The Master Wizard's voice raises several octaves. "WHY?" she shreaks. "IN MY ENTIRE FIVE HUNDRED AND SIXTEEN YEARS AND THREE MONTHS AND TWENTY-SEVEN DAYS,"
+
+She stops and visibly restrains herself.
+
+"I have NEVER seen a more completely idiotic and destructive apprentice than you," she hisses. "Get out. Get. Out. I do not care what your Master, my best friend for thirty decades, is going to say when he comes back and finds you missing or dead—"
+
+Realization hits you. "So I can leave?"
+
+She points behind you to the heavy DOOR which has opened silently, probably by magic, while she was screaming. "You are REQUIRED to leave."
+
+"Okay."
+-> DONE
+//[*leave the parlor] (->outro2)
+
+= outro2
+With a jaunty step, you turn around and walk out of the parlor into the hall. Magic towers are usually very interesting. You can't wait to explore whatever dungeons and secret passages this one holds.
+
+Behind you, the five-hundred-year old Master Wizard sits down on the floor and bursts into a hysterical mix between laughter and tears.
+-> DONE
+//go to credits
 === credits ===
 TOTALLY NORMAL WIZARD APPRENTICE was designed by Stephen March (hecleretical.itch.io) and chasay (chasay.itch.io). It was written by Stephen March, programmed by chasay, and illustrated by Eva (laughingpineapple.itch.io).
 
