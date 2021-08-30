@@ -1,8 +1,6 @@
 using Ink.Runtime;
 using TMPro;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,16 +9,21 @@ public class StoryPlayer : MonoBehaviour {
 
     [SerializeField]
     private TextAsset _inkJSONAsset = null;
+
     [Header("UI")]
     [SerializeField]
     private RectTransform _dialogueContent;
     [SerializeField]
-    private Scrollbar _scrollbar;
+    private ScrollRect _scrollRect;
+    [SerializeField]
+    private Image _currentBackground;
+
     [Header("Prefabs")]
     [SerializeField]
     private TMP_Text _prefabTextBox;
     [SerializeField]
     private Button _prefabButton;
+
 
     private Story _story;
 
@@ -55,24 +58,43 @@ public class StoryPlayer : MonoBehaviour {
         });
     }
 
-    private string lastKnotName;
-
+    private string _currentKnotName;
+    private string _nextKnotName;
+    private List<object> _argsForNext = new List<object>();
     private System.Collections.IEnumerator PlayStory() {
-        string nextKnot = "intro";
+        yield return null;
+
         ReadLineEvent onLineRead = null;
+        List<Button> liveButtons = new List<Button>();
+
+        _nextKnotName = "intro";
 
         while (true) {
-            if (nextKnot != lastKnotName) {
-                ReadSection(nextKnot, onLineRead);
-                DisplayChoices();
+            if (_nextKnotName != _currentKnotName) {
+                if (_nextKnotName == Rooms.Hub) {
+                    ClearContent();
+                } else {
+                    ClearButtons(liveButtons);
+                }
+                ReadNextSection(onLineRead);
+                liveButtons = DisplayChoices();
+
+                yield return null;
+
+                if (_currentKnotName == Rooms.Hub) {
+                    _scrollRect.verticalNormalizedPosition = 1;
+                } else {
+                    _scrollRect.verticalNormalizedPosition = 0;
+                }
             }
             yield return null;
         }
     }
 
-    private void ReadSection(string knotName, ReadLineEvent OnLineRead) {
-        _story.ChoosePathString("intro", knotName != lastKnotName);
-        lastKnotName = knotName;
+    private void ReadNextSection(ReadLineEvent OnLineRead) {
+        _story.ChoosePathString(_nextKnotName, _nextKnotName != _currentKnotName, _argsForNext.ToArray());
+        _argsForNext.Clear();
+        _currentKnotName = _nextKnotName;
 
         while (_story.canContinue) {
             string text = _story.Continue();
@@ -86,25 +108,45 @@ public class StoryPlayer : MonoBehaviour {
         }
     }
 
-    private void DisplayChoices() {
+    private List<Button> DisplayChoices() {
         if (_story.currentChoices.Count > 0) {
+            var ret = new List<Button>(_story.currentChoices.Count);
             for (int i = 0; i < _story.currentChoices.Count; i++) {
                 Choice choice = _story.currentChoices[i];
-                Button button = CreateButton(choice.text.Trim());
 
-                var buttonTags = _story.currentTags;
+                string buttonText = choice.text.Trim();
+                Button button = CreateButton(buttonText);
+
+                var choiceContent = _story.PointerAtPath(choice.targetPath).container.content;
+                List<string> buttonTags = new List<string>();
+                for (int j = 0; j < choiceContent.Count; j++) {
+                    if (choiceContent[j] is Tag) {
+                        Tag t = (Tag)choiceContent[j];
+                        buttonTags.Add(t.text);
+                    }
+                }
+
+                string moveTarget = "";
                 for (int j = 0; j < buttonTags.Count; j++) {
-
+                    Debug.LogFormat("Processing tags for button '{0}'", buttonText);
+                    ProcessTags(out moveTarget, buttonTags);
                 }
 
                 button.onClick.AddListener(() => {
-
+                    if (moveTarget != "") {
+                        Debug.LogFormat("Attempting to move to {0}", moveTarget);
+                        _nextKnotName = moveTarget;
+                    }
                     _story.ChooseChoiceIndex(choice.index);
+                    CreateTextBox(buttonText).fontStyle = FontStyles.Bold;
                 });
+                ret.Add(button);
             }
-        } else {
-            Debug.LogWarning("Ran out of logic!");
+            return ret;
         }
+
+        Debug.LogWarning("No choices found, ran out of logic!");
+        return null;
     }
 
     private void ProcessTags(out string moveTarget, List<string> tags) {
@@ -112,10 +154,10 @@ public class StoryPlayer : MonoBehaviour {
 
         string tagKey;
         string tagValue;
-        foreach (string tag in tags) {
-            var tagValues = tag.Split(new char[] { ':' });
+        for (int i = 0; i < tags.Count; i++) {
+            var tagValues = tags[i].Split(new char[] { ':' });
             if (tagValues.Length != 2) {
-                Debug.LogErrorFormat("tag for [{0}] written incorrectly", tag);
+                Debug.LogErrorFormat("Tag for [{0}] written incorrectly", tags[i]);
                 continue;
             }
             tagKey = tagValues[0].Trim();
@@ -123,10 +165,19 @@ public class StoryPlayer : MonoBehaviour {
 
             switch (tagKey) {
                 case InkTags.Move:
+                    Debug.LogFormat("Processed Move tag towards {0}", tagValue);
                     moveTarget = tagValue;
                     break;
+                case InkTags.Background:
+                    Debug.LogFormat("Processed Background change to {0}", tagValue);
+                    // TODO: Change background
+                    return;
+                case InkTags.Argument:
+                    Debug.LogFormat("Processed Argument tag with value '{0}'", tagValue);
+                    _argsForNext.Add(tagValue);
+                    return;
                 default:
-                    Debug.LogWarningFormat("tag with key [{0}] not recognized", tagKey);
+                    Debug.LogWarningFormat("Tag with key [{0}] not recognized", tagKey);
                     break;
             }
         }
@@ -147,6 +198,13 @@ public class StoryPlayer : MonoBehaviour {
         return button;
     }
 
+    void ClearButtons(List<Button> buttons) {
+        for (int i = 0; i < buttons.Count; i++) {
+            GameObject.Destroy(buttons[i].gameObject);
+        }
+        buttons.Clear();
+    }
+
     void ClearContent() {
         int childCount = _dialogueContent.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i) {
@@ -156,6 +214,16 @@ public class StoryPlayer : MonoBehaviour {
     #endregion
 }
 
+public static class Rooms {
+    public const string Hub = "hub";
+    public const string Fireplace = "room_fireplace";
+    public const string Couch = "room_couch";
+    public const string Lunarium = "room_lunarium";
+    public const string Rug = "room_rug";
+}
+
 public static class InkTags {
     public const string Move = "move";
+    public const string Background = "bg";
+    public const string Argument = "arg";
 }

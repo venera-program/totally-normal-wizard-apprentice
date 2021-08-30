@@ -1,7 +1,7 @@
 INCLUDE logic.ink
 
 LIST inventory = paperweight, grager, safekey1
-LIST seen_objects = footstool
+LIST seen_objects = footstool, rug
 
 === cws ===
 Hey there! TOTALLY NORMAL WIZARD APPRENTICE is an interactive fiction puzzle game written in the second person, and uses "you" to refer to the player character. 
@@ -9,8 +9,8 @@ Hey there! TOTALLY NORMAL WIZARD APPRENTICE is an interactive fiction puzzle gam
 Additionally, the game contains two instances of comedic (non-graphic) animal death, caused directly by the protagonist. It's obviously not something the makers of this game condone, but if reading about animal harm is distressing or triggering for you, or likewise being identified as a character who does this, you should probably sit this out. Please, take care of yourself while you play. - Stephen
 -> DONE
 
-== intro ===
-
+=== intro ===
+# bg: room_couch
 "I'm bored," you say, for the fiftieth time.
 
 The five-hundred-year-old Master Wizard exhales a puff of violet pipe-smoke and passes her hand wearily over her eyes. "I know," she says.
@@ -22,10 +22,7 @@ The Wizard takes a deep breath and answers you very slowly as if she were trying
 "So not before dinner?"
 
 "No," she snaps.
-
-"Can I explore your tower?"
-//that needs to be a choice that moves to p2
--> DONE
+-> choice_intro
 
 = p2
 "Also no."
@@ -47,10 +44,10 @@ The Master Wizard drags her jewel-ringed hand down across her face with a look s
 She flops down on the couch where she's been sitting in a surprisingly undignified way, rolls over, and stuffs a pillow over her head.
 
 You make it about five minutes into listening to her snore before you stand up from your nest of pillows on the floor and resolve to find a way to make it out of the parlor yourself.
-//choice like '*[examine the parlor]'
--> DONE
+-> choice_p2
 
 === hub ===
+# bg: room_couch
 The Master Wizard's parlor is a long room paneled in dark wood and full of tchotchkes, tapestries, pinned butterflies, books, paintings, arcane contraptions, empty liquer bottles, and various ITEMS of almost every kind imaginable. You could probably amuse yourself here without leaving, but it's hot and stuffy and the violet fumes coming from the pipe in the ashtray are making you nauseous. 
 
 You've already tried the heavy carved DOOR at the far WEST end of the room, but you're sure you can figure out a way to open it if you poke around enough.
@@ -58,19 +55,22 @@ You've already tried the heavy carved DOOR at the far WEST end of the room, but 
 To the right of the door, on the NORTH side of the room, is the Wizard's oversized DESK, an small sitting area by a window with an ARMCHAIR, and the glass-walled bay of the LUNARIUM, full of the Wizard's strange plants.
 
 Along the SOUTH wall of the room is a PORTRAIT WALL full of paintings of old people you don't care about.
-
-//seen-rug is a conditional for, has tripped over rug and thus knows about the safe. id like to glue this to the above line ('along the south...') if possible.
-#seen-rug
-In the MIDDLE of the room is an ornate gold-and-purple RUG, which you've pulled aside to reveal a SAFE.
+{seen_obj(rug):
+    <> In the MIDDLE of the room is an ornate gold-and-purple RUG, which you've pulled aside to reveal a SAFE.
+}
 
 At the EAST end of the room is a cavernous FISHTANK-FIREPLACE, and next to that are the COUCHES and cushions where the Wizard is trying to sleep.
 
 //conditional text based on if you've seen this loop before
-What should you try [first/next]?
+What should you try 
+{first_timer:
+    <> next?
+- else:
+    <> first?
+}
+- (first_timer)
 
-//choices here: a) examine desk (if not been to rug, -> rug, if seen-rug, -> desk)
-//b) examine paintings (see a) c) examine armchair (see a) d) (conditional to seen-rug) examine safe e) examine lunarium f) (conditional to not (both have-grager AND have-safekey1)) examine fireplace g) bother the wizard
--> DONE
+-> choices_hub
 
 === room_couch ===
 The Master Wizard appears to be about twice your age, although of course she is over five hundred. She has short dark hair, extravagant clothes befitting her station, and a variety of jewelry crafted out of gold and precious stones. She currently is lying down with a pillow over her head, snoring gently.
@@ -157,19 +157,19 @@ The Wizard lets out an incredulous snort.
 //back to choice
 
 === room_fireplace ===
-//not-grager, has-grager, not-safekey1, has-safekey1 all track item/inventory states
-{!has_item(grager)} The Wizard's FIREPLACE probably did hold fires at some point. It has a mantle and casing carved of heavy pale marble in ornate swoops and swirls; a brass fire grate and poker stand off to one side half-forgotten. At some point in the last five hundred years, though, the Wizard has converted the hearth into a large FISHTANK for little candy-striped peppermint angelfish. You tap on the glass.
+# bg: room_fireplace
+{has_item(grager) == false:
+    The Wizard's FIREPLACE probably did hold fires at some point. It has a mantle and casing carved of heavy pale marble in ornate swoops and swirls; a brass fire grate and poker stand off to one side half-forgotten. At some point in the last five hundred years, though, the Wizard has converted the hearth into a large FISHTANK for little candy-striped peppermint angelfish. You tap on the glass.
+}
 
-{has_item(grager)} The glass FISHTANK in the hearth is now a ruined husk of shattered glass and a sharp puddle on the floor, angelfish flopping around helplessly. You wonder briefly if you could eat one.
+{has_item(grager):
+    The glass FISHTANK in the hearth is now a ruined husk of shattered glass and a sharp puddle on the floor, angelfish flopping around helplessly. You wonder briefly if you could eat one.
+}
 
-{!has_item(safekey1)} The mantle is covered with small curios, but what really catches your eye is a TAXIDERMY TIGER HEAD mounted on the wall above it. You think you see something glimmering in its mouth.
+{has_item(safekey1) == false:
+    The mantle is covered with small curios, but what really catches your eye is a TAXIDERMY TIGER HEAD mounted on the wall above it. You think you see something glimmering in its mouth.
+}
 
-//gather here?
-//(has-paperweight and not-grager) [*smash fishtank with paperweight] (-> fishtank2)
-//(not-paperweight & not came from fishtank1) [+examine fishtank] (-> fishtank1)
-//(not-safekey1 and seen-footstool) [*drag over the footstool] (->tiger2)
-//(not-safekey1 and not-footstool and not came from tiger1) [+examine tiger head] (->tiger1)
-//[+look somewhere else] (-> hub)
 -> choices_fireplace
 = fishtank1
 You appraise the fishtank. The red-and-white striped fish are pretty, vibrant against the brick of the old fireplace. What really catches your eye is something half-buried in the sand at the bottom. It glistens, but barely, as if it's made of worn tin. But you can't find any way to open the fishtank— it must be built into the hearth, and a few repeated taps on the glass tell you it's too heavy to break. You'll have to look around and see if anything else gives you ideas.
@@ -345,8 +345,18 @@ An ornate golden key with purple thread wrapped around the knob falls to the flo
 -> DONE
 //back to portraits gather
 
-=== room_rug ===
-As you're crossing the room to (the desk/the portrait wall/the armchair), you trip and stumble in the middle of the room on an unexpected lump. It sends you tumbling forward smack on your face.
+=== room_rug(from) ===
+~ seen_objects += rug
+As you're crossing the room to
+{from:
+    - "room_desk":
+        <> the desk
+    - "room_portraits":
+        <> the portrait wall
+    - "room_armchair":
+        <> the armchair
+}
+<>, you trip and stumble in the middle of the room on an unexpected lump. It sends you tumbling forward smack on your face.
 
 Sitting up, you see you're on one of the many antique RUGS in the parlor, an ornate purple-and-gold affair woven with flowering vines and birds. There . . . is . . . a very large and SUSPICIOUSLY SQUARE LUMP under the fabric, which your foot must have caught on.
 -> DONE
