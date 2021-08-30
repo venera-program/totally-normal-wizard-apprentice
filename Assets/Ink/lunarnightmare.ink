@@ -125,15 +125,32 @@ The Wizard makes a strangled noise in the back of her throat, probably of rage.
 
 "No," she mumbles, rubbing a hand over her face groggily. "Probably too hot, there's a fire spirit in the samovar that keeps the water extremely warm."
 
-You get a cup of tea and attempt to shove it into her hands. She growls in irritation and swats it away.
+You get a cup of tea and attempt to shove it into her hands. She groans in irritation and swats it away.
 -> DONE
 //back to choice
 
 = hint_books
 "Why do the books on your desk not have any words?"
 
-"They're locked unless exposed to magical fire," she says smugly. "I doubt 
+"They're locked unless exposed to magical fire," she says smugly. "I doubt an apprentice, especially an asshole apprentice, knows enough fire magic to open them. Which is probably good because you would kill a person with fire magic. Anyway, don't mess with them."
 -> DONE
+//back to choice
+
+= hint_parrots
+"Look, one of your parrots dropped a feather." You hold it out to show her.
+
+"PLEASE leave the parrots alone," she says, sounding equally desperate and exhasperated. "They need to sleep, and if they fly into one of my carnivores in the Lunarium they'll be eaten. They can only be let out with supervision. WE'VE BEEN OVER THIS."
+
+Some people are absolute killjoys.
+-> DONE
+//back to choice
+
+= master_convo
+"Do you know when my Master is coming back?"
+
+"If I were your Master," she says sleepily, "I might never come back."
+-> DONE
+//back to choice
 
 === room_fireplace ===
 //not-grager, has-grager, not-safekey1, has-safekey1 all track item/inventory states
