@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class StoryPlayer : MonoBehaviour {
-    public delegate void ReadLineEvent(string text);
-
     [SerializeField]
     private TextAsset _inkJSONAsset = null;
 
@@ -41,14 +39,14 @@ public class StoryPlayer : MonoBehaviour {
         ClearContent();
 
         CreateTextBox("\n\n\n");
-        var title = CreateTextBox("COOL TITLE");
+        var title = CreateTextBox("TOTALLY NORMAL WIZARD APPRENTICE");
         title.horizontalAlignment = HorizontalAlignmentOptions.Center;
         title.fontSize = 36;
         title.fontStyle = FontStyles.Bold;
-        var subtitle = CreateTextBox("Totally epic subtitle");
-        subtitle.horizontalAlignment = HorizontalAlignmentOptions.Center;
-        subtitle.fontSize = 24;
-        subtitle.fontStyle = FontStyles.Bold | FontStyles.Italic;
+        // var subtitle = CreateTextBox("Totally epic subtitle");
+        // subtitle.horizontalAlignment = HorizontalAlignmentOptions.Center;
+        // subtitle.fontSize = 24;
+        // subtitle.fontStyle = FontStyles.Bold | FontStyles.Italic;
         CreateTextBox("\n\n\n");
 
         var startButton = CreateButton("Start Game");
@@ -60,28 +58,28 @@ public class StoryPlayer : MonoBehaviour {
 
     private string _currentKnotName;
     private string _nextKnotName;
+    private bool _sameNameOverride = false;
     private List<object> _argsForNext = new List<object>();
+    private bool _gameOver = false;
     private System.Collections.IEnumerator PlayStory() {
-        yield return null;
-
-        ReadLineEvent onLineRead = null;
         List<Button> liveButtons = new List<Button>();
 
         _nextKnotName = "intro";
 
-        while (true) {
-            if (_nextKnotName != _currentKnotName) {
-                if (_nextKnotName == Rooms.Hub) {
+        while (!_gameOver) {
+            if (_nextKnotName != _currentKnotName || _sameNameOverride) {
+                _sameNameOverride = false;
+                if (_nextKnotName == Rooms.Hub || _nextKnotName == "credits") {
                     ClearContent();
                 } else {
                     ClearButtons(liveButtons);
                 }
-                ReadNextSection(onLineRead);
+                ReadNextSection();
                 liveButtons = DisplayChoices();
 
                 yield return null;
 
-                if (_currentKnotName == Rooms.Hub) {
+                if (_currentKnotName == Rooms.Hub || _currentKnotName == "credits") {
                     _scrollRect.verticalNormalizedPosition = 1;
                 } else {
                     _scrollRect.verticalNormalizedPosition = 0;
@@ -89,20 +87,18 @@ public class StoryPlayer : MonoBehaviour {
             }
             yield return null;
         }
+
+        Debug.Log("STORY HAS STOPPED.");
     }
 
-    private void ReadNextSection(ReadLineEvent OnLineRead) {
-        _story.ChoosePathString(_nextKnotName, _nextKnotName != _currentKnotName, _argsForNext.ToArray());
+    private void ReadNextSection() {
+        _story.ChoosePathString(_nextKnotName, true, _argsForNext.ToArray());
         _argsForNext.Clear();
         _currentKnotName = _nextKnotName;
 
         while (_story.canContinue) {
             string text = _story.Continue();
             text = text.Trim();
-
-            if (OnLineRead != null) {
-                OnLineRead(text);
-            }
 
             CreateTextBox(text);
         }
@@ -136,6 +132,7 @@ public class StoryPlayer : MonoBehaviour {
                     if (moveTarget != "") {
                         Debug.LogFormat("Attempting to move to {0}", moveTarget);
                         _nextKnotName = moveTarget;
+                        _sameNameOverride = _nextKnotName == _currentKnotName;
                     }
                     _story.ChooseChoiceIndex(choice.index);
                     CreateTextBox(buttonText).fontStyle = FontStyles.Bold;
@@ -145,7 +142,7 @@ public class StoryPlayer : MonoBehaviour {
             return ret;
         }
 
-        Debug.LogWarning("No choices found, ran out of logic!");
+        Debug.LogWarningFormat("No choices found, ran out of logic during {0}!", _currentKnotName);
         return null;
     }
 
@@ -175,6 +172,10 @@ public class StoryPlayer : MonoBehaviour {
                 case InkTags.Argument:
                     Debug.LogFormat("Processed Argument tag with value '{0}'", tagValue);
                     _argsForNext.Add(tagValue);
+                    return;
+                case InkTags.End:
+                    Debug.Log("Processed END tag");
+                    _gameOver = true;
                     return;
                 default:
                     Debug.LogWarningFormat("Tag with key [{0}] not recognized", tagKey);
@@ -226,4 +227,5 @@ public static class InkTags {
     public const string Move = "move";
     public const string Background = "bg";
     public const string Argument = "arg";
+    public const string End = "end";
 }
