@@ -401,7 +401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &367713223
 RectTransform:
   m_ObjectHideFlags: 0
@@ -910,6 +910,15 @@ MonoBehaviour:
   _currentBackground: {fileID: 746209492}
   _prefabTextBox: {fileID: 5170017113326724956, guid: 6a01eeaeea2227646acd8cb64f5c07ad, type: 3}
   _prefabButton: {fileID: 9074431562793447346, guid: ec09f9c4c6549034ba86b30e23ecc55d, type: 3}
+  _backgrounds:
+  - {fileID: 21300000, guid: 43b268d805959c6418847da927429cac, type: 3}
+  - {fileID: 21300000, guid: 6b09774a3f6466d47a05afcde16664ff, type: 3}
+  - {fileID: 21300000, guid: 2d1899f76694b86498f78616f061d48a, type: 3}
+  - {fileID: 21300000, guid: 4e06e18af463a554b8cc423b8e6d8b6b, type: 3}
+  - {fileID: 21300000, guid: 96f6dfed8150315428c1c2af17447e26, type: 3}
+  - {fileID: 21300000, guid: bf99a508ece8e0a4a9960b953d6e8e45, type: 3}
+  - {fileID: 21300000, guid: 1dd9b610de43ba94bba5d0f2d594f674, type: 3}
+  - {fileID: 21300000, guid: c28ea61ab0a71524bac5acdf491f2261, type: 3}
 --- !u!4 &1062146327
 Transform:
   m_ObjectHideFlags: 0

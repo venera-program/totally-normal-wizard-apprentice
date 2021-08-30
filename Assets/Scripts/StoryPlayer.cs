@@ -23,7 +23,8 @@ public class StoryPlayer : MonoBehaviour {
     private TMP_Text _prefabTextBox;
     [SerializeField]
     private Button _prefabButton;
-
+    [SerializeField]
+    private Sprite[] _backgrounds = new Sprite[] { };
 
     private Story _story;
 
@@ -244,8 +245,16 @@ public class StoryPlayer : MonoBehaviour {
     }
 
     #region UI Utilities
-    void ChangeBackground(string path) {
-        _currentBackground.sprite = Resources.Load<Sprite>(path);
+    void ChangeBackground(string name) {
+#if UNITY_WEBGL || UNITY_WEBPLAYER
+        for (int i = 0; i < _backgrounds.Length; i++) {
+            if (_backgrounds[i].name == name) {
+                _currentBackground.sprite = _backgrounds[i];
+            }
+        }
+#else
+        _currentBackground.sprite = Resources.Load<Sprite>(name);
+#endif
     }
 
     TMP_Text CreateTextBox(string text) {
