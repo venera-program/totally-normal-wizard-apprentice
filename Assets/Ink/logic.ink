@@ -26,11 +26,11 @@
 
 === choices_hub
 + {sawObj(rug)} [Examine the DESK] # move: room_desk
-+ {!sawObj(rug)} [Examine the DESK] # move: room_rug # arg: room_desk
-+ {sawObj(rug)} [Examine the PAINTINGS] # move: room_portraits
-+ {!sawObj(rug)} [Examine the PAINTINGS] # move: room_rug # arg: room_portraits
++ {!sawObj(rug)} [Examine the DESK] # move: room_rug # arg: 1
++ {sawObj(rug)} [Examine the PORTRAITS] # move: room_portraits
++ {!sawObj(rug)} [Examine the PORTRAITS] # move: room_rug # arg: 2
 + {sawObj(rug)} [Examine the ARMCHAIR] # move: room_armchair
-+ {!sawObj(rug)} [Examine the ARMCHAIR] # move: room_rug # arg: room_armchair
++ {!sawObj(rug)} [Examine the ARMCHAIR] # move: room_rug # arg: 3
 + {sawObj(rug)} [Examine the SAFE] # move: room_rug.safe1
 + [Examine the LUNARIUM] # move: room_lunarium
 + {!hasItem(grager) or !hasItem(safekey1)} [Examine the FIREPLACE] # move: room_fireplace
@@ -99,19 +99,30 @@
 - -> DONE
 
 === found_instrument(instrument)
-{instrument:
-    - otamatone:
-        -> instruments.take_otamatone ->
-    - grager:
-        -> instruments.take_grager ->
-    - kazoo:
-        -> instruments.take_kazoo ->
-}
 ~ played_instruments += instrument
-{-> instruments.instrument_one(instrument) ->|-> instruments.instrument_two(instrument) ->|-> outro}
+{instrument:
+    - grager:
+        -> instruments.take_grager -> grager_noise
+    - kazoo:
+        -> instruments.take_kazoo -> kazoo_noise
+    - otamatone:
+        -> instruments.take_otamatone -> otamatone_noise
+}
+-> DONE
+= consequences(instrument)
+{-> instruments.instrument_one(instrument) ->|-> instruments.instrument_two(instrument) ->|-> outro(instrument)}
 
 + [Resume your antics] # move: hub
 -> DONE
+= grager_noise
+* [GRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGR] # move: found_instrument.consequences # arg: grager
+- -> DONE
+= kazoo_noise
+* [BZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ] # move: found_instrument.consequences # arg: kazoo
+- -> DONE
+= otamatone_noise
+* [DO DO DO DO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO DO DO DO DO DO DO DO DO DO DO DO DO DOOOO DOOOOO DO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO DODO DODODO DO DO DO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOO DOODDDDDDDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO] # move: found_instrument.consequences # arg: otamatone
+- -> DONE
 
 === choice_leave_parlor
 * [Leave the PARLOR] # move: outro.outro2

@@ -164,11 +164,16 @@ The snarling tiger head on the wall above stares down at you with glass eyes. Th
 = tiger2
 Looking up at the tiger head, you have a brilliant realization. You can just stand on something to be taller!
 
-You cross the room back to the armchair and grab its footstool. With some difficulty— it's heavier than it looks— you carry it over, set it down in front of the [has-grager: ruined] fishtank, and stand on it. Perfect. You're now at eye height with the tiger and can easily reach in and yank the object you saw out: an ornate golden key, gold thread wrapped around the knob at the end. So what if you also yank out the tiger's left tooth?
+You cross the room back to the armchair and grab its footstool. With some difficulty— it's heavier than it looks— you carry it over, set it down in front of the
+{hasItem(grager):
+    <> ruined
+}
+<> fishtank, and stand on it. Perfect. You're now at eye height with the tiger and can easily reach in and yank the object you saw out: an ornate golden key, gold thread wrapped around the knob at the end. So what if you also yank out the tiger's left tooth?
 ~ takeItem(safekey1)
 -> choices_fireplace
 
 === room_lunarium ===
+# bg: room_lunarium
 The LUNARIUM is your favorite part of the parlor, and entertained you for a solid fifteen minutes when your Master first dropped you off. It's bathed in soft moonglow through the floor-to-ceiling windows and skylights, and the lushest part of the jungle trees and creeping vines are visible outside. Inside, a large BIRDCAGE covered with a blanket sits on an iron table, inside of which you know the Wizard's three PARROTS are sleeping. Because she had to repeatedly ask you not to annoy them. On shelves around, and on the dark slate-tiled floor, tropical PLANTS from all over the Recursive Moons sit in brightly colored pots. Orchids, hibiscus, birds-of-paradise, and others you've never seen.
 
 Pride of place on the floor is given to the three largest plants, half as tall as you: a pink SUNDEW, a green VENUS FLYTRAP, and a pink and green PITCHER plant. The Wizard refused to let you feed them your vegetables from lunch.
@@ -228,7 +233,6 @@ Then you burn your tongue on it. Damn, it's hot! You have to put this down and d
 = telescope1
 You pull the telescope around to fit your height and peer through. It takes extensive fiddling to focus it, but your Master's always said you were too clever for your own good, and you figure it out.
 -> telescope2
-
 = telescope2
 The telescope lense comes into focus in the midst of the lush jungle outside, on a large amethyst parrot stuck in a venus flytrap about your own height, struggling in futility. You watch with fascination for several minutes before you get bored.
 ~ seeObj(lunariumHint1)
@@ -282,7 +286,7 @@ Your eyes flicker to the tea on the table.
 = books3
 You thumb idly through some of the books. Curiously, their pages are all blank. Are the secrets inside locked away by some magic spell, or is it invisible ink?
 
-Actually, You recall your Master talking about magic books that only show their words when exposed to magical fire.) Fire magic is one of the most difficult elemental masteries, so it's an easy way to hide something from all but the most talented sorcerors. The times he's tried to teach you it you've usually just exploded things. There must be another way to unlock the writing on the page.
+You recall your Master talking about magic books that only show their words when exposed to magical fire. Fire magic is one of the most difficult elemental masteries, so it's an easy way to hide something from all but the most talented sorcerers. The times he's tried to teach you it you've usually just exploded things. There must be another way to unlock the writing on the page.
 
 Think, think. What else do you have that's extremely hot?
 
@@ -293,7 +297,7 @@ The Wizard snores peacefully on the couch with a pillow over her face as you emp
 
 This mostly just makes them wet and stained.
 
-Disappointed, you thumb through some wet and stuck-together pages— oh, there's actually a single line revealed on one of them. Your hypothesis must have been right! You proudly resolve to tell your Master about your engenuity. Someone could write a paper about this.
+Disappointed, you thumb through some wet and stuck-together pages— oh, there's actually a single line revealed on one of them. Your hypothesis must have been right! You proudly resolve to tell your Master about your ingenuity. Someone could write a paper about this.
 
 The words are badly smudged, but you think they say 'That which is above is like to that which is below, and that which is below is like to that which is above, and like consumes like.'
 ~ seeObj(lunariumHint2)
@@ -305,7 +309,7 @@ You pick up the paperweight. It's so heavy you need to pick it up with both hand
 
 === room_portraits ===
 # bg: room_portraits
-The entire south wall of the parlor is a gallery of PAINTINGS: maps and orbital chartts of the Recursive Moons, illustrations of strange beasts and ancient queens— but mostly PORTRAITS of old people you don't care about. You spot one of the King, another of the Prince-Consort and Crown Princess (just a little older than you, in this, with a prodigious amount of pimples), and several of your Master.
+The entire south wall of the parlor is a gallery of PAINTINGS: maps and orbital charts of the Recursive Moons, illustrations of strange beasts and ancient queens— but mostly PORTRAITS of old people you don't care about. You spot one of the King, another of the Prince-Consort and Crown Princess (just a little older than you, in this, with a prodigious amount of pimples), and several of your Master.
 
 The ones that catch your eye, though, are a set of six paintings of the Wizard herself, dated to various times within the last five hundred years. Annoyingly, someone has hung them out of order— they were clearly made as a set; she's in the same clothes, and the Eleventh Moon is visible behind her in each, its phases progressing in what SHOULD be chronological order. But on the wall, they're jumbled!
 -> choices_portraits
@@ -327,12 +331,14 @@ An ornate golden key with purple thread wrapped around the knob falls to the flo
 ~ seeObj(rug)
 As you're crossing the room to
 {from:
-    - "room_desk":
+    - 1:
         <> the desk
-    - "room_portraits":
+    - 2:
         <> the portrait wall
-    - "room_armchair":
+    - 3:
         <> the armchair
+    - else:
+        <> ERROR
 }
 <>, you trip and stumble in the middle of the room on an unexpected lump. It sends you tumbling forward smack on your face.
 
@@ -355,24 +361,19 @@ You take out the intricate gold- and purple-threaded keys. It takes a minute to 
 === instruments ===
 = take_grager
 You now hold a oxidized TIN GRAGER in your hand, still dripping with saltwater. And there is only one thing to do with a grager: rattle it around wildly. Like so:
-
-GRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGRGR
 ->->
 = take_kazoo
 Hidden in the compartment are uncut rubies the size of quail eggs, letters representing blackmail material for every duke at court, and fistfulls of gold coins three centuries old.
 
 Unfortunately for all those interesting things, there is also a shiny SILVER KAZOO. You lift it to your lips immediately:
-
-BZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ
 ->->
 = take_otamatone
-Inside the safe is, you will learn later, a dagger forged and enchanted to kill the Prince of Three Suns the very instant it draws a single drop of blood from his body. It does momentarily catch your attention— until you spot, tucked behind it in a corner of the safe, an OT.
+Inside the safe is, you will learn later, a dagger forged and enchanted to kill the Prince of Three Suns the very instant it draws a single drop of blood from his body. It does momentarily catch your attention— until you spot, tucked behind it in a corner of the safe, an otamatone.
 
 Your Master threw your otamatone off the highest tower in the realm on the second day of your apprenticeship. How can you resist?:
-
-DO DO DO DO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO DO DO DO DO DO DO DO DO DO DO DO DO DOOOO DOOOOO DO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO DODO DODODO DO DO DO DOOOOOOOOOOOOOOOOOOOOOOOOOOOOO DOODDDDDDDOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
 ->->
 = instrument_one(instrument)
+# bg: room_couch
 A bolt of pale lightning shoots from the Wizard's hand and zaps the {instrument} from existence. You yelp as the electric shock tingles through your hand.
 
 "STOP THAT," growls the Master Wizard. "Some of us are trying to SLEEP."
@@ -382,6 +383,7 @@ A bolt of pale lightning shoots from the Wizard's hand and zaps the {instrument}
 She doesn't respond, only grumbling curses under her breath as she rolls over on the couch to go back to sleep.
 ->->
 = instrument_two(instrument)
+# bg: room_couch
 The {instrument} dissolves atom by atom from your hand and reassembles itself in the hands of the Wizard, who casually crushes it into dust with undoubtedly magical strength.
 
 "You are BEGINNING to IRRITATE ME," she snarls. "STOP whatever it is you THINK YOU'RE DOING and let me sleep. Go read a book or something! When I was your age I loved books!"
@@ -389,9 +391,9 @@ The {instrument} dissolves atom by atom from your hand and reassembles itself in
 You mutter mutinously under your breath as she lies back down and piles pillows on top of herself, like a cocoon against your racket.
 ->->
 
-=== outro ===
+=== outro(instrument) ===
 # bg: room_couch
-It is the absolute deafening silence and smell of ozone in the air that makes you pause your gleeful abuse of a perfectly good (instrument). When you turn around the Wizard is standing directly behind you.
+It is the absolute deafening silence and smell of ozone in the air that makes you pause your gleeful abuse of a perfectly good {instrument}. When you turn around the Wizard is standing directly behind you.
 
 She has quite evidently surveyed her ripped paintings, plundered hiding places, broken taxidermies, smashed fishtank, missing parrots, ruined books, and generally ransacked-by-an-invading-army parlor and decided to become more furious than you have ever seen anybody be in your entire life. She's visibly smoking. It must be a wizard thing.
 
@@ -399,7 +401,7 @@ She has quite evidently surveyed her ripped paintings, plundered hiding places, 
 
 "Huh? Why?"
 
-"Why?" The Master Wizard's voice raises several octaves. "WHY?" she shreaks. "IN MY ENTIRE FIVE HUNDRED AND SIXTEEN YEARS AND THREE MONTHS AND TWENTY-SEVEN DAYS,"
+"Why?" The Master Wizard's voice raises several octaves. "WHY?" she shrieks. "IN MY ENTIRE FIVE HUNDRED AND SIXTEEN YEARS AND THREE MONTHS AND TWENTY-SEVEN DAYS,"
 
 She stops and visibly restrains herself.
 
