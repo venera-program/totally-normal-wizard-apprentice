@@ -53,7 +53,7 @@ You make it about five minutes into listening to her snore before you stand up f
 === hub ===
 The Master Wizard's parlor is a long room paneled in dark wood and full of tchotchkes, tapestries, pinned butterflies, books, paintings, arcane contraptions, empty liquer bottles, and various ITEMS of almost every kind imaginable. You could probably amuse yourself here without leaving, but it's hot and stuffy and the violet fumes coming from the pipe in the ashtray are making you nauseous. 
 
-You've already tried the heavy carved DOOR at the far east end of the room, but you're sure you can figure out a way to open it if you poke around enough.
+You've already tried the heavy carved DOOR at the far WEST end of the room, but you're sure you can figure out a way to open it if you poke around enough.
 
 To the right of the door, on the NORTH side of the room, is the Wizard's oversized DESK, an small sitting area by a window with an ARMCHAIR, and the glass-walled bay of the LUNARIUM, full of the Wizard's strange plants.
 
@@ -63,7 +63,7 @@ Along the SOUTH wall of the room is a PORTRAIT WALL full of paintings of old peo
 #seen-rug
 In the MIDDLE of the room is an ornate gold-and-purple RUG, which you've pulled aside to reveal a SAFE.
 
-At the WEST end of the room is a cavernous FISHTANK-FIREPLACE, and next to that are the COUCHES and cushions where the Wizard is trying to sleep.
+At the EAST end of the room is a cavernous FISHTANK-FIREPLACE, and next to that are the COUCHES and cushions where the Wizard is trying to sleep.
 
 //conditional text based on if you've seen this loop before
 What should you try [first/next]?
