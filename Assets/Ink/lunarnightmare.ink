@@ -75,7 +75,7 @@ What should you try [first/next]?
 === room_couch ===
 The Master Wizard appears to be about twice your age, although of course she is over five hundred. She has short dark hair, extravagant clothes befitting her station, and a variety of jewelry crafted out of gold and precious stones. She currently is lying down with a pillow over her head, snoring gently.
 
-It takes several loud throat-clearings and a bit of poking to get her to sit up, (tired / somewhat surly / increasingly annoyed / extremely grouchily / clearly at the utmost limit of her patience).
+It takes several loud throat-clearings and a bit of poking to get her to sit up, (tired / somewhat surly / increasingly annoyed / extremely grouchily / clearly at the utmost limit of her patience) and half-awake.
 //this is a sequence
 
 "Whadyouwan'???"
@@ -88,6 +88,51 @@ It takes several loud throat-clearings and a bit of poking to get her to sit up,
 //(has-feather) [+ask about parrots] (-> hint_parrots)
 //[+ask if your Master is back] (-> master_convo)
 //[+leave her alone] (-> hub)
+-> DONE
+
+= hint_paperweight
+"Can I have this paperweight?"
+
+"No. That's heavy and you're going to break something. Like your bones."
+
+"That's why I want it," you say.
+
+"Do NOT. Also it's expensive—"
+
+"That's also why I want it."
+
+"NO—"
+
+"OKAY, don't YELL AT ME."
+
+The Wizard makes a strangled noise in the back of her throat, probably of rage.
+-> DONE
+//back to couch gather
+
+= hint_safe
+"You have a safe under your rug," you inform her.
+
+"And the keys are hidden so you'll never open it."
+
+"What's in it?"
+
+"Some things are too dangerous to be held in mortal hands," she says solemnly. You're pretty sure she's joking.
+-> DONE
+//back to couch
+
+= hint_tea
+"Would you like some tea?" you ask.
+
+"No," she mumbles, rubbing a hand over her face groggily. "Probably too hot, there's a fire spirit in the samovar that keeps the water extremely warm."
+
+You get a cup of tea and attempt to shove it into her hands. She growls in irritation and swats it away.
+-> DONE
+//back to choice
+
+= hint_books
+"Why do the books on your desk not have any words?"
+
+"They're locked unless exposed to magical fire," she says smugly. "I doubt 
 -> DONE
 
 === room_fireplace ===
